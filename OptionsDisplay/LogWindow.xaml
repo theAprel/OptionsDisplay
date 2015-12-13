@@ -9,8 +9,8 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <Label x:Name="labelDisplay" Content="Options:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="30" Width="272"/>
-        <Label x:Name="logLabel" Content="Log empty" HorizontalAlignment="Left" Margin="17,152,0,0" VerticalAlignment="Top" Width="265" Height="112"/>
-        <Label x:Name="historyLabel" Content="Log empty" HorizontalAlignment="Left" Margin="17,40,0,0" VerticalAlignment="Top" Width="265" Height="112"/>
+        <TextBlock x:Name="historyBlock" HorizontalAlignment="Left" Margin="10,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="112" Width="272"/>
+        <TextBlock x:Name="logBlock" HorizontalAlignment="Left" Margin="10,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="112" Width="272"/>
 
     </Grid>
 </Controls:MetroWindow>

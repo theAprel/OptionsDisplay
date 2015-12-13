@@ -28,24 +28,24 @@ namespace OptionsDisplay
 
         public void ClearAll()
         {
-            historyLabel.Content = "";
-            logLabel.Content = "";
+            historyBlock.Text = "";
+            logBlock.Text = "";
         }
 
         public void MoveToHistory()
         {
-            historyLabel.Content = logLabel.Content;
-            logLabel.Content = "";
+            historyBlock.Text = logBlock.Text;
+            logBlock.Text = "";
         }
 
         public void SetWindowText(String text)
         {
-            logLabel.Content = text;
+            logBlock.Text = text;
         }
 
         public void AppendWindowText(String text)
         {
-            logLabel.Content = (String.IsNullOrEmpty(logLabel.Content.ToString()) ? "" : " " ) + logLabel.Content.ToString() + text;
+            logBlock.Text = logBlock.Text + text;
         }
     }
 }
