@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Hearthstone_Deck_Tracker.Enums;
+using Hearthstone_Deck_Tracker.Hearthstone;
 
 namespace OptionsDisplay
 {
     public class TagPrinter
     {
         private static LogWindow window;
+        private static bool disableLogParsing = false;
 
         public static void Load()
         {
@@ -23,10 +25,19 @@ namespace OptionsDisplay
         public static void PrepareForStartOfTurn(ActivePlayer ap)
         {
             window.MoveToHistory();
+            if (ap == ActivePlayer.Player)
+            {
+                disableLogParsing = true;
+            }
+            else
+            {
+                disableLogParsing = false;
+            }
         }
 
         public static void ProcessPowerLogLine(String line)
         {
+            if (disableLogParsing) return;
             if(line.Contains("tag=NUM_OPTIONS "))
             {
                 String entity = GetValueInLogEntry(line, "Entity");
