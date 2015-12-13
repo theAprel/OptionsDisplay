@@ -14,17 +14,31 @@ namespace OptionsDisplay
         {
             window = new LogWindow();
             window.Show();
-            Hearthstone_Deck_Tracker.API.LogEvents.OnPowerLogLine.Add(processPowerLogLine);
+            Hearthstone_Deck_Tracker.API.LogEvents.OnPowerLogLine.Add(ProcessPowerLogLine);
         }
 
-        public static void processPowerLogLine(String line)
+        public static void ProcessPowerLogLine(String line)
         {
             if(line.Contains("tag=NUM_OPTIONS "))
             {
-                String entity = line.Split("Entity=".ToCharArray())[1].Split(" ".ToCharArray())[0];
-                String value = line.Split("Value=".ToCharArray())[1];
+                String entity = GetValueInLogEntry(line, "Entity");
+                String value = GetValueInLogEntry(line, "value");
                 window.SetWindowText(entity + " has " + value + " options.");
             }
+        }
+
+        private static String GetValueInLogEntry(String entry, String key)
+        {
+            int keyIndex = entry.IndexOf(key);
+            String afterEqualsSign = entry.Substring(keyIndex + key.Length + 1); // +1 is the equals sign
+            if(!afterEqualsSign.Contains("="))
+            {
+                return afterEqualsSign; // no more key-value pairs on log line; return this last value
+            }
+            int nextEquals = afterEqualsSign.IndexOf("=");
+            String valueAndNextKey = afterEqualsSign.Substring(0, nextEquals);
+            int lastSpaceIndex = valueAndNextKey.LastIndexOf(" ");
+            return valueAndNextKey.Substring(0, lastSpaceIndex);
         }
     }
 }
