@@ -12,18 +12,25 @@ namespace OptionsDisplay
     {
 
         private HearthstoneTextBlock info;
+        private HearthstoneTextBlock history;
 
         public HearthWindow()
         {
             info = new HearthstoneTextBlock();
-            info.Text = "";
-            info.FontSize = 12;
+            history = new HearthstoneTextBlock();
+            foreach (HearthstoneTextBlock htb in new HearthstoneTextBlock[] { info, history }) {
+                htb.Text = "";
+                htb.FontSize = 12;
+            }
             var canvas = Hearthstone_Deck_Tracker.API.Core.OverlayCanvas;
             var fromTop = canvas.Height / 2;
             var fromLeft = canvas.Width / 2;
-            Canvas.SetTop(info, fromTop);
+            Canvas.SetTop(history, fromTop);
+            Canvas.SetLeft(history, fromLeft);
+            Canvas.SetTop(info, fromTop + 20);
             Canvas.SetLeft(info, fromLeft);
             canvas.Children.Add(info);
+            canvas.Children.Add(history);
         }
 
         public void AppendWindowText(string text)
@@ -34,10 +41,12 @@ namespace OptionsDisplay
         public void ClearAll()
         {
             info.Text = "";
+            history.Text = "";
         }
 
         public void MoveToHistory()
         {
+            history.Text = info.Text;
             info.Text = "";
         }
 
