@@ -19,11 +19,12 @@ namespace OptionsDisplay
     /// <summary>
     /// Interaction logic for LogWindow.xaml
     /// </summary>
-    public partial class LogWindow
+    public partial class LogWindow : InfoWindow
     {
         public LogWindow()
         {
             InitializeComponent();
+            Show();
         }
 
         public void ClearAll()

@@ -10,13 +10,12 @@ namespace OptionsDisplay
 {
     public class TagPrinter
     {
-        private static LogWindow window;
+        private static InfoWindow window;
         private static bool disableLogParsing = false;
 
         public static void Load()
         {
-            window = new LogWindow();
-            window.Show();
+            window = new HearthWindow();
             Hearthstone_Deck_Tracker.API.LogEvents.OnPowerLogLine.Add(ProcessPowerLogLine);
             Hearthstone_Deck_Tracker.API.GameEvents.OnTurnStart.Add(PrepareForStartOfTurn);
             Hearthstone_Deck_Tracker.API.GameEvents.OnGameStart.Add(window.ClearAll);
