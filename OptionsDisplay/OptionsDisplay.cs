@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Hearthstone_Deck_Tracker.Enums;
 
 namespace OptionsDisplay
 {
@@ -15,6 +16,13 @@ namespace OptionsDisplay
             window = new LogWindow();
             window.Show();
             Hearthstone_Deck_Tracker.API.LogEvents.OnPowerLogLine.Add(ProcessPowerLogLine);
+            Hearthstone_Deck_Tracker.API.GameEvents.OnTurnStart.Add(PrepareForStartOfTurn);
+            Hearthstone_Deck_Tracker.API.GameEvents.OnGameStart.Add(window.ClearAll);
+        }
+
+        public static void PrepareForStartOfTurn(ActivePlayer ap)
+        {
+            window.MoveToHistory();
         }
 
         public static void ProcessPowerLogLine(String line)
@@ -23,7 +31,7 @@ namespace OptionsDisplay
             {
                 String entity = GetValueInLogEntry(line, "Entity");
                 String value = GetValueInLogEntry(line, "value");
-                window.SetWindowText(entity + " has " + value + " options.");
+                window.AppendWindowText(entity + " has " + value + " options.");
             }
         }
 

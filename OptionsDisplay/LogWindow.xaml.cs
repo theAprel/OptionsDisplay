@@ -26,9 +26,26 @@ namespace OptionsDisplay
             InitializeComponent();
         }
 
+        public void ClearAll()
+        {
+            historyLabel.Content = "";
+            logLabel.Content = "";
+        }
+
+        public void MoveToHistory()
+        {
+            historyLabel.Content = logLabel.Content;
+            logLabel.Content = "";
+        }
+
         public void SetWindowText(String text)
         {
             logLabel.Content = text;
+        }
+
+        public void AppendWindowText(String text)
+        {
+            logLabel.Content = (String.IsNullOrEmpty(logLabel.Content.ToString()) ? "" : " " ) + logLabel.Content.ToString() + text;
         }
     }
 }
