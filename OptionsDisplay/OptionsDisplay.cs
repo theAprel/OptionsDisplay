@@ -23,10 +23,10 @@ namespace OptionsDisplay
 
         public static void PrepareForStartOfTurn(ActivePlayer ap)
         {
-            window.MoveToHistory();
             if (ap == ActivePlayer.Player)
             {
                 disableLogParsing = true;
+                window.MoveToHistory();
             }
             else
             {
