@@ -38,7 +38,7 @@ namespace OptionsDisplay
 
         public void MoveToHistory()
         {
-            return;
+            info.Text = "";
         }
 
         public void SetWindowText(string text)
