@@ -40,7 +40,8 @@ namespace OptionsDisplay
             if(line.Contains("tag=NUM_OPTIONS "))
             {
                 String entity = GetValueInLogEntry(line, "Entity");
-                String value = GetValueInLogEntry(line, "value");
+                int value = Int32.Parse(GetValueInLogEntry(line, "value"));
+                value = value - 1; // "End turn" is considered an option. Since it's always an option, discount it.
                 window.AppendWindowText(entity + " has " + value + " options.");
             }
         }
